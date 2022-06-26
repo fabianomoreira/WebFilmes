@@ -1,0 +1,54 @@
+@model IEnumerable<WebFilmes.Models.Filme>
+
+@{
+    ViewData["Title"] = "Lista de Filmes";
+}
+
+<h1>Lista de Filmes</h1>
+<h2>Pendências para assistir (Streaming)</h2>
+
+<p>
+    <a asp-action="Create">Adicionar um Filme</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Título do Filme
+            </th>
+            <th>
+                Data de Lançamento
+            </th>
+            <th>
+                Gênero
+            </th>
+            <th>
+                Valor do aluguel
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Consultar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
